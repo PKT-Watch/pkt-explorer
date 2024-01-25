@@ -1,0 +1,56 @@
+.key {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    grid-gap: 1rem;
+    font-size: .8rem;
+
+    @media (min-width: 512px) {
+        font-size: 1rem;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        grid-gap: .5rem;
+    }
+
+    .pool-indicator {
+        width: .8rem;
+        height: .8rem;
+        border-radius: 1000px;
+        background: #f2f2f2;
+        flex: 0 0 .8rem;
+
+        @media (min-width: 512px) {
+            width: 1rem;
+            height: 1rem;
+            flex: 0 0 1rem;
+        }
+    }
+
+    .pktpool {
+        .pool-indicator {
+            background: var(--pool-pktpool);
+        }
+    }
+
+    .pktworld {
+        .pool-indicator {
+            background: var(--pool-pktworld);
+        }
+    }
+
+    .pkteer, .superphenix {
+        .pool-indicator {
+            background: var(--pool-pkteer);
+        }
+    }
+
+    .zetahash {
+        .pool-indicator {
+            background: var(--pool-zetahash);
+        }
+    }
+}

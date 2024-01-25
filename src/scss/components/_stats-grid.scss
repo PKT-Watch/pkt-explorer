@@ -1,0 +1,13 @@
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: .5rem;
+
+    .tile {
+        > :nth-child(1) {
+            font-size: .7rem;
+            opacity: .8;
+        }
+    }
+}

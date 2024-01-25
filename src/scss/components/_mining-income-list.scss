@@ -1,0 +1,31 @@
+﻿.mining-income-list {
+    .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--padding-sm) 0;
+
+        + .list-item {
+            border-top: var(--border);
+        }
+
+        .value {
+            font-weight: 600;
+
+            .units {
+                font-weight: 300;
+                opacity: .6;
+
+                @media (min-widthe: 576px) {
+                    font-size: .8em;
+                }
+            }
+        }
+    }
+}
+
+#chart-mining-income-container {
+    .chart-container {
+        height: 130px;
+    }
+}

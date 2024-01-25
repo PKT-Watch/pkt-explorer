@@ -1,0 +1,58 @@
+
+.rich-list {
+    .list-item {
+        margin-bottom: .5rem;
+        display: grid;
+        //grid-template-columns: min-content 1fr min-content;
+        grid-template-columns: 1fr;
+        grid-gap: .5rem;
+        align-items: flex-start;
+
+        @media (min-width: 768px) {
+            grid-template-columns: min-content 1fr min-content;
+        }
+
+        .title {
+            font-size: .7rem;
+            opacity: .8;
+        }
+
+        .rank {
+            justify-self: flex-start;
+            display: flex;
+            grid-gap: .5rem;
+
+            .indicator {
+                display: flex;
+                align-items: center;
+                padding: .25rem .5rem;
+                background: var(--bg-stat-tile);
+                font-size: .7rem;
+                line-height: 1rem;
+                border-radius: var(--border-radius);
+            }
+        }
+
+        .owned {
+            margin: 0;
+        }
+
+        .address {
+            word-break: break-all;
+        }
+
+        .value {
+            white-space: nowrap;
+
+            .units {
+                font-size: .8em;
+                font-weight: 300;
+                opacity: .6;
+            }
+        }
+
+        .value-output {
+            font-weight: 600;
+        }
+    }
+}

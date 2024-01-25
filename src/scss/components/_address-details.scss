@@ -1,0 +1,40 @@
+.address-details {
+    .header {
+        .address-account {
+            display: flex;
+            align-items: flex-start;
+            grid-gap: 1rem;
+
+            > div:nth-child(2) {
+                flex: 1;
+            }
+
+            h1 {
+                color: inherit;
+            }
+        }
+
+        .qr-code {
+            padding: .5rem;
+            background: var(--bg-tile);
+            border-radius: var(--border-radius);
+            //border: var(--border);
+            width: calc(80px + 1rem);
+            height: calc(80px + 1rem);
+        }
+    }
+
+    .save-address-control {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-primary);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        position: absolute;
+        top: -17px;
+        right: -1px;
+    }
+}

@@ -1,0 +1,108 @@
+@page "{txHash}"
+@model TxModel
+@{
+    ViewData["Title"] = "Transaction " + @RouteData.Values["txHash"];
+}
+
+@section Header { 
+    <meta name="twitter:title" content='PKT transaction @RouteData.Values["txHash"]' />
+    <meta property="og:title" content='PKT transaction @RouteData.Values["txHash"]' />
+    <meta property="og:description" content='Details for PKT transaction @RouteData.Values["txHash"]' />
+    <meta name="twitter:description" content='Details for PKT transaction @RouteData.Values["txHash"]' />
+    <meta property="description" content='Details for PKT transaction @RouteData.Values["txHash"]' />
+    <meta property="og:url" content='https://@Model.websiteDomain/tx/@RouteData.Values["txHash"]' />
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row mt-3 mt-lg-5">
+            <div class="col-lg-4">
+                
+                <div id="announcement-container"></div>
+
+                <h1 class="list-title h6">Transaction Details</h1>
+                <div class="tile element-details transaction-details placeholder-glow">
+                    <div class="header">
+                        <div class="clipboard-copy">
+                            <div class="title">Transaction Hash</div>
+                            <div id="tx-hash" class="hash"><span
+                                    class="placeholder">----------------------------------------------------------------</span>
+                            </div>
+                        </div>
+                        <div class="balance">
+                            <div class="title">Total Value</div>
+                            <div id="tx-value" class="text-xl"><span class="placeholder">------</span></div>
+                        </div>
+                    </div>
+
+                    <div class="stats-table">
+                        <div class="title">Status</div>
+                        <div id="tx-status" class="value"><span class="placeholder">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Timestamp</div>
+                        <div id="tx-date" class="value"><span class="placeholder">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Confirmations</div>
+                        <div id="tx-confirmations" class="value"><span class="placeholder">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">In Block</div>
+                        <div id="tx-height" class="value"><span class="placeholder">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Size</div>
+                        <div id="tx-size" class="value"><span class="placeholder">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Fees</div>
+                        <div id="tx-fee" class="value"><span class="placeholder">------</span></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8 mt-5 mt-lg-0">
+                <h6 class="list-title-sm">Inputs and Outputs</h6>
+                <div id="transaction-list" class="transaction-list">
+                    <div class="list-item tile expanded placeholder-glow">
+                        <div class="io-list expandable">
+                            <div>
+                                <div class="title"><div class="value-pkt"><span class="placeholder hash">------</span></div></div>
+                                <div class="inputs">
+                                    <div class="list-item tile">
+                                        <div class="address">
+                                            <span class="placeholder hash">-------------------------------------------</span>
+                                        </div>
+                                        <div class="value">
+                                            <div class="value-pkt"><span class="placeholder hash">------</span></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="title"><div class="value-pkt"><span class="placeholder hash">------</span></div></div>
+                                <div class="outputs">
+                                    <div class="list-item tile">
+                                        <div class="address">
+                                            <span class="placeholder hash">-------------------------------------------</span>
+                                        </div>
+                                        <div class="value">
+                                            <div class="value-pkt"><span class="placeholder hash">------</span></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    const TXHASH = '@RouteData.Values["txHash"]';
+    function initPage() {
+        PAGE_TX.init();
+    }
+</script>
+}

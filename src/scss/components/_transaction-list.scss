@@ -1,0 +1,93 @@
+.transaction-list {
+    .list-item {
+        margin-bottom: .5rem;
+        padding: 0;
+
+        .title {
+            font-size: .7rem;
+            opacity: .8;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: auto min-content min-content;
+            grid-gap: .5rem;
+            position: sticky;
+            top: 0;
+            //background: #FFF;
+            z-index: 1;
+            padding: var(--padding-sm);
+            //margin: calc(var(--padding-sm) * -1);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            //border-bottom: var(--border);
+
+            .value {
+                white-space: nowrap;
+                font-weight: 600;
+
+                .units {
+                    font-size: .8em;
+                    font-weight: 300;
+                    opacity: .6;
+                }
+            }
+
+            .txid {
+                word-break: break-all;
+            }
+
+            .type {
+                display: flex;
+                align-items: center;
+            }
+
+            .send-receive-stat {
+                display: flex;
+                align-items: center;
+
+                > span {
+                    margin: 0 .25rem;
+                    font-size: inherit;
+                }
+            }
+        }
+
+        .footer {
+            padding: var(--padding-sm);
+        }
+
+        &.expanded {
+            .header {
+                border-bottom: var(--border);
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
+                background: var(--bg-tile);
+            }
+        }
+    }
+}
+
+.no-transactions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    //height: 100%;
+    //opacity: .5;
+
+    &.no-further-transactions {
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .body {
+        opacity: .5;
+    }
+
+    .icon {
+        font-size: 30px;
+
+        span {
+            font-size: inherit;
+        }
+    }
+}

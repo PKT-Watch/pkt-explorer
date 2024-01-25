@@ -1,0 +1,23 @@
+.search-control {
+    position: relative;
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: .5rem;
+        transform: translateY(-50%);
+        font-size: 1.3rem;
+        color: var(--color-primary);
+    }
+
+    input {
+        padding-left: 2rem;
+        border-color: var(--color-primary);
+        font-size: 1rem;
+
+        @media (min-width: 622px) {
+            min-width: 330px;
+            padding-left: 2.5rem;
+        }
+    }
+}

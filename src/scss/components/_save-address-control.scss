@@ -1,0 +1,61 @@
+﻿.save-address-control {
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+        content: "\e83a";
+        font-family: 'Material Icons';
+        display: block;
+        font-size: 1.5rem;
+        color: #FFF;
+    }
+
+    &::after {
+        content: "\e838";
+        font-family: 'Material Icons';
+        display: block;
+        font-size: 1.5rem;
+        color: #FFF;
+        position: absolute;
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    &:hover {
+        &::after {
+            opacity: .5;
+        }
+    }
+
+    &.saved {
+        &::after {
+            opacity: 1;
+        }
+
+        &:hover {
+            &::after {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.saving {
+        &::before {
+            animation: saveAnimation .35s linear;
+        }
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes saveAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}

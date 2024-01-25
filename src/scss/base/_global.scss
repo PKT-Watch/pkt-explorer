@@ -1,0 +1,36 @@
+html {
+    font-size: 15px;
+
+    @media (min-width: 420px) {
+        font-size: 16px;
+    }
+}
+
+body {
+    background: var(--bg-body);
+    font-family: 'Inter Tight', sans-serif;
+    color: var(--text);
+}
+
+.main-content {
+    margin-bottom: 5rem;
+}
+
+.break-word {
+    word-break: break-all;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.text-xl {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.text-muted {
+    color: inherit !important;
+    opacity: .7;
+}

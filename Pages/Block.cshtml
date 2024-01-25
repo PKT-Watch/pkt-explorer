@@ -1,0 +1,203 @@
+@page "{blockHash}"
+@model BlockModel
+@{
+    ViewData["Title"] = "Block " + @RouteData.Values["blockHash"];
+}
+
+@section Header { 
+    <meta name="twitter:title" content='PKT block @RouteData.Values["blockHash"]' />
+    <meta property="og:title" content='PKT block @RouteData.Values["blockHash"]' />
+    <meta property="og:description" content='Details for PKT block @RouteData.Values["blockHash"]' />
+    <meta name="twitter:description" content='Details for PKT block @RouteData.Values["blockHash"]' />
+    <meta property="description" content='Details for PKT block @RouteData.Values["blockHash"]' />
+    <meta property="og:url" content='https://@Model.websiteDomain/block/@RouteData.Values["blockHash"]' />
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row d-flex align-items-center placeholder-glow block-navigation">
+            <div class="col">
+                <a id="btnPreviousBlock" href="#" class="btn btn-block btn-block-previous tile">
+                    <span class="icon material-icons">chevron_left</span>
+                    <div>
+                        <div class="title">Block</div>
+                        <div class="height"><span class="placeholder">00000000</span></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-auto">
+                <div class="tile text-center">
+                    <div class="title">Block</div>
+                    <div id="block-height" class="text-xl placeholder-glow"><span class="placeholder">000000</span></div>
+                </div>
+            </div>
+            <div class="col text-end">
+                <a id="btnNextBlock" href="#" class="btn btn-block btn-block-next tile disabled-state">
+                    <div>
+                        <div class="title">Block</div>
+                        <div class="height"><span class="placeholder">00000000</span></div>
+                    </div>
+                    <span class="icon material-icons spin">autorenew</span>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-xl-4">
+
+                <div id="announcement-container"></div>
+
+                <div class="tile element-details block-details placeholder-glow">
+                    <div class="header">
+                        <div class="clipboard-copy">
+                            <div class="title">Block Hash</div>
+                            <div id="block-hash" class="hash"><span
+                                    class="placeholder">----------------------------------------------------------------</span>
+                            </div>
+                        </div>
+                        <div class="balance">
+                            <div class="title">Total Value</div>
+                            <div id="block-value" class="text-xl"><span class="placeholder">------</span></div>
+                            <div id="block-value-estimate" class="title d-none">Based on loaded transactions</div>
+                        </div>
+                    </div>
+
+                    <div class="stats-table">
+                        <div class="title">Mined</div>
+                        <div id="block-date" class="value"><span class="placeholder col-12">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Miner</div>
+                        <div id="block-pool" class="value"><span class="placeholder col-8">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Reward</div>
+                        <div id="block-reward" class="value"><span class="placeholder col-6">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Confirmations</div>
+                        <div id="block-confirmations" class="value"><span class="placeholder col-3">------</span></div>
+                        <div class="line"></div>
+                        <div class="title">Transactions</div>
+                        <div id="block-transactions" class="value"><span class="placeholder">------</span></div>
+                    </div>
+
+                    <div class="expandable-content">
+                        <div class="expandable">
+                            <div class="stats-table">
+                                <div class="line"></div>
+                                <div class="title">Difficulty</div>
+                                <div id="block-difficulty" class="value">----</div>
+                                <div class="line"></div>
+                                <div class="title">Announcements</div>
+                                <div id="block-announcements" class="value">----</div>
+                                <div class="line"></div>
+                                <div class="title">Ann. Difficulty</div>
+                                <div id="block-announcement-difficulty" class="value">----</div>
+                                <div class="line"></div>
+                                <div class="title">Coinbase</div>
+                                <div id="block-coinbase" class="value break-word">----</div>
+                                <div class="line"></div>
+                                <div class="title">Merkle Root</div>
+                                <div id="block-merkle-root" class="value break-word">----</div>
+                                <div class="line"></div>
+                                <div class="title">Nonce</div>
+                                <div id="block-nonce" class="value">----</div>
+                                <div class="line"></div>
+                                <div class="title">Size</div>
+                                <div id="block-size" class="value">----</div>
+                            </div>
+                        </div>
+                        <div class="expandable-content-control">
+                            Show technical details <span class="material-icons">expand_less</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-lg-7 col-xl-8 mt-5 mt-lg-0">
+                <h6 class="list-title-sm">Coinbase Transaction</h6>
+                <p class="list-subtitle-sm">Newly minted coins that were distributed to miners</p>
+                <div id="coinbase-transaction-list" class="transaction-list">
+                    <div class="list-item tile placeholder-glow">
+                        <div class="header expander">
+                            <div class="txid">
+                                <span class="placeholder hash">----------------------------------------------------------------</span>
+                            </div>
+                            <div class="value">
+                            </div>
+                            <div>
+                                
+                            </div>
+                            <div class="io title">
+                                <span class="placeholder">1 Sender - 1 Recipient</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="transaction-list-container" class="d-none">
+                    <div class="d-flex align-items-center mt-4 mb-2">
+                        <h6 class="list-title mb-0">Transactions</h6>
+
+                        <div class="form-check form-switch ms-auto">
+                            <input id="chkExpandTransactions" class="form-check-input" type="checkbox" role="switch">
+                            <label class="form-check-label small" for="chkExpandTransactions">Expand transactions</label>
+                        </div>
+                    </div>
+
+                    <div id="transaction-list" class="transaction-list">
+                        <div class="list-item tile placeholder-glow">
+                            <div class="header expander">
+                                <div class="txid">
+                                    <span class="placeholder hash">----------------------------------------------------------------</span>
+                                </div>
+                                <div class="value">
+                                </div>
+                                <div>
+                                    
+                                </div>
+                                <div class="io title">
+                                    <span class="placeholder">1 Sender - 1 Recipient</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btnLoadMore" type="button" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1 d-none">
+                        <div class="body">
+                            <div class="content">
+                                Load more transactions
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                        <div class="loading-state">
+                            <span class="icon material-icons spin">autorenew</span>
+                        </div>
+                    </button>
+
+                    <div id="no-further-transactions" class="no-transactions no-further-transactions tile d-none">
+                        <div class="body">
+                            <div class="content">
+                                <div class="icon">
+                                    <span class="material-icons">block</span>
+                                </div>
+                                There are no more transactions
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    const BLOCKHASH = '@RouteData.Values["blockHash"]';
+    function initPage() {
+        PAGE_BLOCK.init();
+    }
+</script>
+}

@@ -1,0 +1,7 @@
+/* Hack to prevent charts causing horizontal overflow on mobile.
+// This rule will be overwritten at larger breakpoints by Bootstrap. */
+@media (max-width: 575.98px) {
+    .container {
+        max-width: 100vw;
+    }
+}

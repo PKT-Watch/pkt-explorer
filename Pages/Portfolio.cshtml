@@ -1,0 +1,120 @@
+@page
+@model PortfolioModel
+@{
+    ViewData["Title"] = "My Portfolio / Build your own portfolio";
+}
+
+@section Header { 
+    <meta name="twitter:title" content="My Portfolio / Build your own portfolio" />
+    <meta property="og:title" content="My Portfolio / Build your own portfolio" />
+    <meta property="description" content="Combined balance and mining income for your entire portfolio." />
+    <meta property="og:description" content="Combined balance and mining income for your entire portfolio." />
+    <meta name="twitter:description" content="Combined balance and mining income for your entire portfolio." />
+    <meta property="og:url" content="https://@Model.websiteDomain/portfolio/" />
+    <meta name="description" content="Save PKT wallet addresses to build a portfolio. Combined balance and mining income for your addresses in one place." />
+}
+
+<div class="main-content">
+    <div class="container d-none" id="saved-addresses-container">
+        <div class="row mt-5">
+            <div class="col">
+                <div class="dashboard-stats-grid saved-addresses-stats-grid tile placeholder-glow" id="addresses-stats-container">
+                    <div class="stat-block">
+                        <div class="title">Total Balance</div>
+                        <div id="addresses-total-balance"><span class="placeholder">-----------</span></div>
+                        <div id="addresses-total-value"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">Mined Last 24h</div>
+                        <div id="addresses-mined-24hr"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-txn-chart">
+                        <div class="title mb-1 d-none d-lg-block">Mining Income</div>
+                        <div class="chart-container">
+                            <canvas id="chart-mining-income"></canvas>
+                        </div>
+                        <div class="title mt-2 text-center d-lg-none">Mining Income</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5" id="address-list-container">
+            <div class="col">
+                <h1 class="h6 list-title">My Portfolio</h1>
+                <div id="address-list" class="saved-address-list placeholder-glow">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container saved-address-empty-state d-lg-flex flex-column h-100 justify-content-center mt-5 mt-lg-0 mb-5" id="empty-state-container">
+        <div class="row justify-content-center align-items-center px-4 px-lg-0">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h1 class="list-title h6">My Portfolio</h1>
+
+                <div class="tile">
+                    <p class="">Build a portfolio by saving addresses.</p>
+
+                    <p class="">Hit the <span class="material-icons text-primary" style="vertical-align: text-bottom;">star_border</span> icon to save an address and add it to your portfolio.</p>
+
+                    <p class="mb-0">Combined balance and mining income for your addresses in one place.</p>
+                </div>
+                
+            </div>
+            <div class="col-12 col-lg-auto order-lg-3 text-end align-self-start">
+                <div class="try-control">Try it out</div>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+                <div class="example-save-control-container">
+                    <div class="tile element-details address-details placeholder-glow">
+                        <div class="header">
+                            <div class="save-address-control"></div>
+                            <div class="address-account">
+                                <div id="address-qrcode" class="qr-code" title="pkt1q6hqsqhqdgqfd8t3xwgceulu7k9d9w5t2amath0qxyfjlvl3s3u4sjza2g2"><canvas width="80" height="80" style="display: none;"></canvas><img style="display: block;" src="data:image/png;base64,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"></div>
+                                <div>
+                                    <h1 class="">
+                                        <span class="title">Address</span>
+                                        <span id="address-address" class="hash">
+                                            <span class="clipboard-copy-value"> pkt1q6hqsqhqdgqfd8t3xwgceulu7k9d9w5t2amath0qxyfjlvl3s3u4sjza2g2</span> <span class="icon"></span>
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+
+                            <div class="balance">
+                                <div class="title">Balance</div>
+                                <div id="address-balance" class="text-xl">26,337,136.79 <span class="units">PKT</span></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="title">Total Received</div>
+                                    <div id="address-total-received">938,832,800.39 <span class="units">PKT</span></div>
+                                </div>
+                                <div class="col">
+                                    <div class="title">Total Spent</div>
+                                    <div id="address-total-spent">250,798,467.19 <span class="units">PKT</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 px-4 px-lg-0">
+            <div class="col-12 text-center">
+                <p class="text-muted small">Your portfolio is stored in your browser. It will never be shared with anybody else.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    function initPage() {
+        PAGE_SAVED_ADDRESSES.init();
+    }
+</script>
+}

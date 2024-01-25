@@ -1,0 +1,255 @@
+@page "/daily-miners"
+@model DailyMinersModel
+@{
+    ViewData["Title"] = "Daily PKT Miners";
+}
+
+@section Header { 
+    <meta name="twitter:title" content="Daily PKT Miners" />
+    <meta property="og:title" content="Daily PKT Miners" />
+    <meta property="description" content="All wallets that mined the PKT Cash blockchain yesterday. Ranked by income." />
+    <meta property="og:description" content="All wallets that mined the PKT Cash blockchain yesterday. Ranked by income." />
+    <meta name="twitter:description" content="All wallets that mined the PKT Cash blockchain yesterday. Ranked by income." />
+    <meta property="og:url" content="https://@Model.websiteDomain/daily-miners/" />
+    <meta name="description" content="All wallets that mined the PKT Cash blockchain yesterday. Ranked by income." />
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div class="tile">
+                    <div class="chart-container">
+                        <canvas id="chart-daily-miners"></canvas>
+                    </div>
+                    <h6 class="title text-center">Unique mining addresses per day</h6>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h1 class="list-title h6">Daily Miners.</h1>
+                <h2 class="list-subtitle h6 mt-2">All wallets that mined the PKT Cash blockchain yesterday. Ranked by income.</h2>
+
+                <div id="miners-list" class="rich-list placeholder-glow">
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="rank"><span class="placeholder hash">0</span></div>
+                        <div class="address">
+                            <span class="placeholder hash">-------------------------------------------</span>
+                        </div>
+                        <div class="value">
+                            <span class="value-output"><span class="placeholder hash">------------------</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btnLoadMore" type="button" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1 d-none">
+                    <div class="body">
+                        <div class="content">
+                            Load more addresses
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                    <div class="loading-state">
+                        <span class="icon material-icons spin">autorenew</span>
+                    </div>
+                </button>
+
+                <div id="no-further-transactions" class="no-transactions no-further-transactions tile d-none">
+                    <div class="body">
+                        <div class="content">
+                            <div class="icon">
+                                <span class="material-icons">block</span>
+                            </div>
+                            There are no more addresses
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+<script>
+    function initPage() {
+        PAGE_DAILY_MINERS.init();
+    }
+</script>
+}

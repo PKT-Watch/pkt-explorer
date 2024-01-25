@@ -1,0 +1,11 @@
+.placeholder {
+    vertical-align: inherit;
+    opacity: .2;
+    opacity: 0;
+}
+
+@keyframes placeholder-glow {
+    50% {
+        opacity: .1;
+    }
+}

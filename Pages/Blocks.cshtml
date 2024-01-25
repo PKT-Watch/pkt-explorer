@@ -1,0 +1,275 @@
+@page
+@model BlocksModel
+@{
+    ViewData["Title"] = "PKT Blocks";
+}
+
+@section Header { 
+    <meta property="og:title" content="PKT Blocks" />
+    <meta property="og:description" content="PKT Blocks" />
+    <meta name="twitter:title" content="PKT Blocks" />
+    <meta name="twitter:description" content="PKT Blocks" />
+    <meta property="description" content="PKT Blocks" />
+    <meta property="og:url" content="https://@Model.websiteDomain/blocks/" />
+    <meta name="description" content="PKT Blocks" />
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div class="dashboard-stats-grid tile placeholder-glow">
+                    <div class="stat-block">
+                        <div class="title">Block Height</div>
+                        <div id="coins-height"><span class="placeholder">-----------</span></div>
+                        <div id="coins-height-time"><span class="placeholder">-------------------</span></div>
+
+                        <div class="title mt-3">Current Block Reward</div>
+                        <div id="coins-reward"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-difficulty">
+                        <div class="title">Current Difficulty</div>
+                        <div id="coins-difficulty"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">Next Difficulty Estimate</div>
+                        <div id="coins-difficulty-next"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">Next Readjustment</div>
+                        <div id="coins-difficulty-retarget"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-difficulty">
+                        <div class="title">24hr Transactions</div>
+                        <div id="coins-24hr-transactions"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">24hr TPS</div>
+                        <div id="coins-24hr-tps"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">24hr Blocks</div>
+                        <div id="coins-24hr-blocks"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-txn-chart">
+                        <div class="title">Daily Transactions</div>
+                        <div class="chart-container">
+                            <canvas id="chart-transactions"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <div id="blocks-list" class="block-list placeholder-glow">
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btnLoadMore" type="button" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1 d-none">
+                    <div class="body">
+                        <div class="content">
+                            Load more blocks
+                        
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                    <div class="loading-state">
+                        <span class="icon material-icons spin">autorenew</span>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+<script>
+    function initPage() {
+        PAGE_BLOCKS.init();
+    }
+</script>
+}

@@ -1,0 +1,72 @@
+@model dynamic
+
+<div class="tile element-details address-details placeholder-glow">
+    <div class="header">
+        <div class="save-address-control"></div>
+        <div class="address-account">
+            <div id="address-qrcode" class="qr-code"></div>
+            <div>
+                <h1 class="clipboard-copy">
+                    <span class="title">Address</span>
+                    <span id="address-address" class="hash">
+                        <span class="clipboard-copy-value">@ViewContext.RouteData.Values["address"]</span> <span class="icon"></span>
+                    </span>
+                </h1>
+            </div>
+        </div>
+
+        <div class="balance">
+            <div class="title">Balance</div>
+            <div id="address-balance" class="text-xl"><span class="placeholder">-----------</span></div>
+        </div>
+
+        @if (@Model.isNetworkSteward) {
+            <div class="burned">
+                <div class="title">Coins Burned</div>
+                <div id="address-burned" class="text-xl"><span class="placeholder">-----------</span></div>
+            </div>
+        }
+
+        @* <div class="row sent-received">
+            <div class="col">
+                <div class="title">Total Received</div>
+                <div id="address-total-received"><span class="placeholder">------</span></div>
+            </div>
+            <div class="col">
+                <div class="title">Total Spent</div>
+                <div id="address-total-spent"><span class="placeholder">------</span></div>
+            </div>
+        </div> *@
+    </div>
+    
+    <div class="stats-table">
+        <div class="title">Owner</div>
+        <div id="address-owner" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">First Balance Change</div>
+        <div id="address-first-seen" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">Unconsolidated Txns</div>
+        <div id="address-balance-count" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">Unconfirmed</div>
+        <div id="address-unconfirmed-received" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">Transactions</div>
+        <div id="address-transactions" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">Mining Payouts</div>
+        <div id="address-mine-count" class="value"><span class="placeholder">------</span></div>
+        <div class="line"></div>
+        <div class="title">Mined Last 24hr</div>
+        <div id="address-mined24" class="value"><span class="placeholder">------</span></div>
+    </div>
+
+    <div id="chart-mining-income-container" class="d-none mt-3">
+        <div class="chart-container">
+            <canvas id="chart-mining-income"></canvas>
+        </div>
+        <div class="title text-center mt-2">90 Day Mining Income</div>
+    </div>
+    
+</div>

@@ -1,0 +1,115 @@
+.block-navigation {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    &::before {
+        content: "";
+        height: 1px;
+        background: var(--border-color);
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        right: 12px;
+
+        @media (min-width: 576px) {
+            left: 126px;
+            right: 126px;
+        }
+    }
+
+    .tile {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        min-width: 146px;
+        padding: var(--padding-sm);
+
+        @media (min-width: 576px) {
+            padding: var(--padding);
+        }
+    }
+
+    .btn-block {
+        display: inline-flex;
+        align-items: center;
+        //grid-gap: .5rem;
+        text-align: center;
+        min-width: 0;
+        color: var(--text);
+
+        @media (min-width: 576px) {
+            min-width: 146px;
+        }
+
+        > div {
+            flex: 1;
+            display: none;
+
+            @media (min-width: 576px) {
+                display: block;
+            }
+        }
+
+        &::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: var(--border);
+            background: var(--bg-tile);
+            border-radius: 1000px;
+            position: absolute;
+            transition: all .15s ease-in-out;
+        }
+
+        &.btn-block-previous {
+            padding-left: var(--padding-sm);
+
+            > div {
+                padding-right: .5rem;
+            }
+
+            &::after {
+                right: -10px;
+            }
+        }
+
+        &.btn-block-next {
+            padding-right: var(--padding-sm);
+            justify-content: flex-end;
+
+            > div {
+                padding-left: .5rem;
+            }
+            // .icon {
+            //     margin-left: auto;
+            // }
+
+            &::after {
+                left: -10px;
+            }
+        }
+
+        &:hover, &:active {
+
+            &:not(.disabled-state) {
+                border-color: var(--color-primary) !important;
+                background-color: var(--bg-tile);
+
+                &::after {
+                    border-color: var(--color-primary);
+                }
+            }
+        }
+
+        &.disabled-state {
+            cursor: default;
+            border: var(--border) !important;
+            background: var(--bg-tile);
+
+            > div, .icon {
+                opacity: .4;
+            }
+        }
+    }
+}

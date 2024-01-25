@@ -1,0 +1,97 @@
+.tile {
+    padding: var(--padding);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background: var(--bg-tile);
+    box-shadow: var(--box-shadow);
+    //box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    //box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 7px 13px -3px;
+    //border: none;
+    //overflow: hidden; // breaks sticky
+    .title {
+        font-size: .9rem;
+        opacity: .8;
+    }
+
+    &.new-feature {
+        position: relative;
+        overflow: hidden;
+        
+        &::after {
+            content: "New";
+            position: absolute;
+            top: 14px;
+            right: -36px;
+            padding: 0.2rem 40px;
+            background: var(--color-primary);
+            color: #FFF;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+.tile-link {
+    display: block;
+    width: 100%;
+    color: var(--text);
+    transition: var(--transition);
+    position: relative;
+
+    .body {
+        display: flex;
+        grid-gap: 1rem;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .control {
+        .icon {
+            font-size: 2rem;
+            display: block;
+            color: var(--tile-link-icon);
+            transition: var(--transition);
+        }
+    }
+
+    &:hover {
+        background: var(--bg-tile);
+        border-color: var(--color-primary);
+
+        .control {
+            .icon {
+                color: var(--color-primary);
+            }
+        }
+    }
+
+    .loading-state {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-primary);
+        opacity: 0;
+        transition: var(--transition);
+
+        .icon {
+            display: block;
+        }
+    }
+
+    &.loading {
+        .body {
+            opacity: 0;
+        }
+
+        .loading-state {
+            opacity: 1;
+        }
+    }
+}

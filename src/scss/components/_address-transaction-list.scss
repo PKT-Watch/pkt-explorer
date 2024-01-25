@@ -1,0 +1,101 @@
+.address-transaction-list {
+    .list-item {
+        margin-bottom: .5rem;
+        padding: 0;
+
+        .title {
+            font-size: .7rem;
+            opacity: .8;
+        }
+
+        .header {
+            display: grid;
+            //grid-template-columns: min-content auto;
+            grid-template-columns: min-content auto min-content min-content;
+            grid-gap: .5rem;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--bg-list-item-header);
+            z-index: 1;
+            padding: var(--padding-sm);
+            //margin: calc(var(--padding-sm) * -1);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            border-bottom: var(--border);
+            font-size: .8rem;
+
+            @media (min-width: 576px) {
+                grid-template-columns: min-content auto min-content min-content;
+                font-size: 1rem;
+            }
+
+            .value {
+                white-space: nowrap;
+                font-weight: 600;
+
+                .units {
+                    font-weight: 300;
+                    opacity: .6;
+
+                    @media (min-width: 576px) {
+                        font-size: .8em;
+                    }
+                }
+            }
+
+            .txid {
+                word-break: break-all;
+            }
+
+            .type {
+                display: flex;
+                align-items: center;
+            }
+
+            .material-icons {
+                display: block;
+                font-size: 18px;
+
+                @media (min-width: 576px) {
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .send-receive-stat {
+            display: flex;
+            align-items: center;
+
+            > span {
+                margin: 0 .25rem;
+                font-size: inherit;
+            }
+        }
+
+        .footer {
+            display: flex;
+            grid-gap: .5rem;
+            padding: var(--padding-sm);
+
+            > :nth-child(2) {
+                margin-left: auto;
+            }
+
+            .txid {
+                //font-size: .8em;
+                margin-bottom: .5rem;
+                word-break: break-all;
+            }
+        }
+
+        &.expanded {
+            .header {
+                border-radius: 4px 4px 0 0;
+            }
+
+            .footer {
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.list-title, .list-title-sm {
+    padding-left: var(--padding);
+
+    + .list-subtitle, + .list-subtitle-sm {
+        margin-top: -.5rem;
+    }
+}
+
+.list-title-sm {
+    padding-left: var(--padding-sm);
+}
+
+.list-subtitle, .list-subtitle-sm {
+    padding-left: var(--padding);
+    font-size: .8rem;
+    opacity: .6;
+    margin-bottom: .5rem;
+}
+
+.list-subtitle-sm {
+    padding-left: var(--padding-sm);
+}

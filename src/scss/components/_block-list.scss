@@ -1,0 +1,18 @@
+
+.block-list {
+    .list-item {
+        margin-bottom: .5rem;
+        display: grid;
+        grid-template-columns: 1fr min-content;
+        grid-gap: .5rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: 2fr 1fr 1fr 77px;
+        }
+
+        .title {
+            font-size: .9rem;
+            opacity: .8;
+        }
+    }
+}

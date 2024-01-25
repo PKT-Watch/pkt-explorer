@@ -1,0 +1,24 @@
+﻿.dropup {
+    .dropdown-menu {
+        --bs-dropdown-border-color: var(--border-color);
+        --bs-dropdown-border-radius: var(--border-radius);
+        --bs-dropdown-min-width: 0;
+        //bottom: 27px;
+        top: 27px;
+        right: 0;
+    }
+
+    .dropdown-item {
+        font-size: .8rem;
+
+        &:active {
+            background: var(--color-primary);
+        }
+    }
+
+    &.active {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,156 @@
+@page "{address}"
+@model AddressModel
+@{
+    ViewData["Title"] = "PKT address " + @RouteData.Values["address"];
+}
+
+@section Header { 
+    <meta name="twitter:title" content='PKT address @RouteData.Values["address"]' />
+    <meta property="og:title" content='PKT address @RouteData.Values["address"]' />
+    <meta property="og:description" content='Balance, transactions and statistics for PKT address @RouteData.Values["address"]' />
+    <meta name="twitter:description" content='Balance, transactions and statistics for PKT address @RouteData.Values["address"]' />
+    <meta property="description" content='Balance, transactions and statistics for PKT address @RouteData.Values["address"]' />
+    <meta property="og:url" content='https://@Model.websiteDomain/address/@RouteData.Values["address"]' />
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row mt-3 mt-lg-5">
+            <div class="col-lg-5 col-xl-4">
+                
+                @if (@Model.isNetworkSteward) {
+                    <a href="https://pkt.cash/network-steward/" target="_blank" class="tile tile-link mb-3">
+                        <h6 class="title">Learn</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <h2 class="text-primary h5">The Network Steward</h2>
+
+                                <p>A democratically elected wallet that provides grants for open-source development of the PKT ecosystem.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+                <h2 class="list-title h6">Address Details</h2>
+                <partial name="_PartialAddressDetails" model="new {isNetworkSteward = @Model.isNetworkSteward}" />
+                
+            </div>
+            <div class="col-lg-7 col-xl-8 mt-5 mt-lg-0">
+                <div class="tab-nav mb-2">
+                    <h6 class="list-title-sm active" data-group="#transaction-tab-group" data-target="#transaction-list-container">Transactions</h6>
+                    <h6 class="list-title-sm me-auto" data-group="#transaction-tab-group" data-target="#mining-income-list-container">Mining Income</h6>
+
+                    <div class="form-check form-switch ms-2">
+                        <input id="chkExpandTransactions" class="form-check-input" type="checkbox" role="switch">
+                        <label class="form-check-label small" for="chkExpandTransactions">Expand transactions</label>
+                    </div>
+                </div>
+
+                <div id="transaction-tab-group" class="h-100">
+                    <div id="transaction-list-container" class="tab h-100">
+                        <div id="transaction-list" class="address-transaction-list">
+                            <div class="list-item tile expandable-content placeholder-glow">
+                                <div class="header expander">            
+                                    <span class="placeholder" style="width:24px">--</span>  
+                                    <div class="date placeholder">
+                                        08/06/2021, 09:23:13
+                                    </div>
+                                    <div class="type">
+                                    </div>
+                                    <div class="value">
+                                        <span class="placeholder">-------</span>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div>
+                                        <div class="txid">
+                                            <div class="title">Transaction Hash</div>
+                                            <span class="placeholder hash">----------------------------------------------------------------</span>
+                                        </div>
+                                        <div class="io title">
+                                            <span class="placeholder">--------------------</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="btnLoadMore" type="button" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1 d-none">
+                            <div class="body">
+                                <div class="content">
+                                    Load more transactions
+                                </div>
+                                <div class="control">
+                                    <span class="icon material-icons">chevron_right</span>
+                                </div>
+                            </div>
+                            <div class="loading-state">
+                                <span class="icon material-icons spin">autorenew</span>
+                            </div>
+                        </button>
+
+                        <div id="no-transactions" class="no-transactions tile d-none">
+                            <div class="body">
+                                <div class="content">
+                                    <div class="icon">
+                                        <span class="material-icons">block</span>
+                                    </div>
+                                    This address has not made any transactions
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="no-further-transactions" class="no-transactions no-further-transactions tile d-none">
+                            <div class="body">
+                                <div class="content">
+                                    <div class="icon">
+                                        <span class="material-icons">block</span>
+                                    </div>
+                                    There are no more transactions
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="mining-income-list-container" class="tab d-none">
+                        <div class="tile">
+                            <div id="mining-income-list" class="mining-income-list"></div>
+                        </div>
+
+                        <button id="btnLoadMoreMiningIncome" type="button" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1 mt-2">
+                            <div class="body">
+                                <div class="content">
+                                    Load more
+                                </div>
+                                <div class="control">
+                                    <span class="icon material-icons">chevron_right</span>
+                                </div>
+                            </div>
+                            <div class="loading-state">
+                                <span class="icon material-icons spin">autorenew</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PreScripts {
+<script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js" integrity="sha256-xUHvBjJ4hahBW8qN9gceFBibSFUzbe9PNttUvehITzY=" crossorigin="anonymous"></script>
+}
+
+@section Scripts {
+<script>
+    const ADDRESS = '@RouteData.Values["address"]';
+    function initPage() {
+        PAGE_ADDRESS.init();
+    }
+</script>
+}

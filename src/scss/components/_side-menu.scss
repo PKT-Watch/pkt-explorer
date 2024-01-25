@@ -1,0 +1,51 @@
+﻿.side-menu {
+    border-radius: .5rem .5rem 0 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    @media (min-width: 450px) {
+        top: 1rem !important;
+        bottom: 1rem !important;
+        right: 1rem !important;
+        border-radius: .5rem;
+    }
+
+    .offcanvas-header {
+        background: var(--bg-tile);
+        border-radius: 0.5rem 0.5rem 0 0;
+        border-bottom: var(--border);
+    }
+
+    .list-title {
+        padding-left: var(--padding);
+    }
+
+    .nav-item {
+        + .nav-item {
+            margin-top: .5rem;
+        }
+    }
+
+    /*.nav-link {
+        border-radius: var(--border-radius);
+        color: var(--text);
+        border: var(--border);
+
+        &:hover {
+            background: var(--bg-body);
+        }
+    }*/
+
+    .tile-link {
+        + .tile-link {
+            margin-top: .5rem;
+        }
+
+        p {
+            margin: 0;
+
+            + p {
+                margin-top: .5rem;
+            }
+        }
+    }
+}

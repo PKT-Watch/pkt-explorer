@@ -1,0 +1,337 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = @Model.websiteName + " / Explore the PKT Cash blockchain";
+}
+
+@section Header {
+    <meta name="twitter:title" content="@Model.websiteName / Explore the PKT Cash blockchain">
+    <meta property="og:title" content="@Model.websiteName / Explore the PKT Cash blockchain">
+    <meta property="og:description" content="Block explorer for the PKT Cash blockchain. Look up PKT blocks, transactions, addresses, balances and blockchain stats.">
+    <meta name="twitter:description" content="Block explorer for the PKT Cash blockchain. Look up PKT blocks, transactions, addresses, balances and blockchain statse.">
+    <meta property="og:url" content="https://@Model.websiteDomain">
+    <meta name="description" content="@Model.websiteName / Explore the PKT Cash blockchain. A block explorer for the PKT Cash blockchain. Look up PKT blocks, transactions, addresses, balances and blockchain stats.">
+}
+
+<div class="main-content">
+    <div class="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="masthead-content">
+                        <h1>Explore the PKT Cash Blockchain</h1>
+                        <div class="search-control">
+                            <span class="icon material-icons">search</span>
+                            <input type="text" class="form-control form-control-lg" placeholder="Search by Address / Txn Hash / Block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col">
+                <div class="dashboard-stats-grid tile placeholder-glow">
+                    <div class="stat-block">
+                        <div class="title">Block Height</div>
+                        <div id="coins-height"><span class="placeholder">-----------</span></div>
+                        <div id="coins-height-time"><span class="placeholder">-------------------</span></div>
+    
+                        <div class="title mt-3">Current Block Reward</div>
+                        <div id="coins-reward"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-difficulty">
+                        <div class="title">Current Difficulty</div>
+                        <div id="coins-difficulty"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">Next Difficulty Estimate</div>
+                        <div id="coins-difficulty-next"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">Next Readjustment</div>
+                        <div id="coins-difficulty-retarget"><span class="placeholder">-----------</span></div>
+                    </div> 
+
+                    <div class="stat-difficulty">
+                        <div class="title">24hr Transactions</div>
+                        <div id="coins-24hr-transactions"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">24hr TPS</div>
+                        <div id="coins-24hr-tps"><span class="placeholder">-----------</span></div>
+
+                        <div class="title mt-3">24hr Blocks</div>
+                        <div id="coins-24hr-blocks"><span class="placeholder">-----------</span></div>                      
+                    </div> 
+
+                    <div class="stat-txn-chart">
+                        <div class="title mb-1 d-none d-lg-block">Daily Transactions</div>
+                        <div class="chart-container">
+                            <canvas id="chart-transactions"></canvas>
+                        </div>
+                        <div class="title mt-2 text-center d-lg-none">Daily Transactions</div>
+                    </div>
+                
+                </div>
+                
+            </div>
+        </div>
+        <div class="row mt-4 mt-lg-5">
+            <div class="col-lg-6">
+                <div class="tile h-100 d-flex align-items-center dashboard-content-block">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img src="/img/pkt-logo-icon.svg" alt="PKT Cash icon" class="pkt-icon mx-2 mt-2" width="61" height="70">
+                        </div>
+                        <div class="col">
+                            <div>
+                                <p class="lead mb-2">@Model.websiteName is a block explorer for the <a href="https://pkt.cash">PKT Cash</a> blockchain.</p>
+                                <p class="mb-0 text-muted">Look up blocks, transactions, addresses, balances, blockchain stats and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="tile h-100 d-flex align-items-center dashboard-content-block">
+                    <div class="row">
+                        <div class="col-auto">
+                            <span class="material-icons text-primary save-icon">star</span>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <p class="lead mb-2">Save addresses to your portfolio.</p>
+                                <p class="text-muted">Combined balance and mining income for your addresses in one place.</p>
+                                <a href="/portfolio/" class="btn btn-outline-primary btn-sm">Create your portfolio</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col d-flex flex-column">
+                <h2 class="list-title h6">Latest Blocks</h2>
+                <div id="blocks-list" class="block-list placeholder-glow">
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                    <div class="list-item tile">
+                        <div class="height">
+                            <div class="title">Hash</div>
+                            <span class="placeholder hash">------------------</span>
+                        </div>
+                        <div class="height">
+                            <div class="title">Height</div>
+                            <span class="placeholder">-------</span>
+                        </div>
+                        <div class="age">
+                            <div class="title">Age</div>
+                            <span class="placeholder">-----------</span>
+                        </div>
+                        <div class="transactions">
+                            <div class="title">Transactions</div>
+                            <span class="placeholder">---</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="/blocks/" class="btn tile tile-link d-flex align-items-center justify-content-center flex-grow-1">
+                    <div class="body">
+                        <div class="content">
+                            View more blocks
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-4 d-flex flex-column">
+                <div class="list-title h6">&nbsp;</div>
+                <div class="dashboard-stats-grid dashboard-price-stats-grid tile placeholder-glow flex-fill">
+                    <div class="stat-price">
+                        @if (@Model.showPriceInfo) {
+                            <div class="title">Price</div>
+                            <div id="coins-price"><span class="placeholder">-----------</span></div>
+                            <div id="coins-market-cap"><span class="placeholder">-----------</span></div>
+                        }
+                        <div class="title mt-3">Circulating Supply</div>
+                        <div id="coins-circulating"><span class="placeholder">-----------</span></div>
+                    </div>  
+
+                    <div class="stat-coins">
+                        <div class="title">Max Supply</div>
+                        <div id="coins-max"><span class="placeholder">-----------</span></div>
+                        <div class="title mt-3">Coins Burned</div>
+                        <div id="coins-burned"><span class="placeholder">-----------</span></div>
+                    </div>
+
+                    <div class="stat-coins">
+                        <div class="title">Coins Mined</div>
+                        <div id="coins-mined"><span class="placeholder">-----------</span></div>
+                        <div class="title mt-3">Coins Remaining</div>
+                        <div id="coins-remaining"><span class="placeholder">-----------</span></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        @if (@Model.showEcosystemTiles) {
+            <div class="row mt-5">
+                <div class="col">
+                    <h6 class="list-title">Ecosystem</h6>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <a href="https://pkt.cash" target="_blank" class="tile tile-link h-100">
+                        <h6 class="title">Learn</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-xl text-primary mt-3">The future of internet access</p>
+
+                                <p>Learn more about the PKT Cash project at the official project website.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="https://pkt.world/wallet" target="_blank" class="tile tile-link h-100">
+                        <h6 class="title">Software</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-xl text-primary mt-3">The Pkt.world wallet</p>
+
+                                <p>A multi-platform PKT Cash wallet with built-in miner.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <a href="https://anode.co" target="_blank" class="tile tile-link h-100">
+                        <h6 class="title">Software</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-xl text-primary mt-3">Anode VPN</p>
+
+                                <p>Decentralized VPN built on the PKT Cash blockchain.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="https://routie.io/?ref=pktwatch" target="_blank" class="tile tile-link h-100">
+                        <h6 class="title">Business</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-xl text-primary mt-3">Wi-fi sharing and mining hardware</p>
+
+                                <p>Routie build cutting-edge technology utilising the PKT Cash blockchain.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    function initPage() {
+        PAGE_HOME.init();
+    }
+</script>
+}

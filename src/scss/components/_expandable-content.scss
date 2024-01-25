@@ -1,0 +1,21 @@
+.expandable-content {
+    &:not(.expanded) {
+        .expandable {
+            display: none;
+        }
+
+        .expandable-content-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            > span {
+                transform: rotate(180deg);
+            }
+
+            &:active {
+                background: inherit;
+            }
+        }
+    }
+}

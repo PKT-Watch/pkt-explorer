@@ -1,0 +1,247 @@
+﻿@{
+    string theme = "light";
+    var themeCookie = Context.Request.Cookies["theme"];
+    if (!string.IsNullOrEmpty(themeCookie)) {
+        theme = themeCookie;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="@theme">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://@Model.websiteDomain/img/social-share.png">
+    <meta property="og:site_name" content="@Model.websiteName">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@Model.websiteCreator">
+    <meta name="twitter:image" content="https://@Model.websiteDomain/img/social-share-twitter.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png">
+    <link rel="manifest" href="/meta/site.webmanifest">
+    <link rel="mask-icon" href="/meta/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/meta/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/meta/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    @await RenderSectionAsync("Header", required: false)
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.min.css?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%2C.-%3C%3E%24"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%2C.-%3C%3E%24"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+    </noscript>
+</head>
+<body>
+    <div class="page-scaffold">
+        <div>
+            <div class="sync-error d-none">
+                Chain is syncing. Data may be inaccurate or incomplete. Synced block <span class="internal-height"></span> of <span class="external-height"></span> (<span class="sync-difference"></span> to go)
+            </div>
+        </div>
+
+        @* <div>
+            <div class="sync-error">
+                We are performing maintenance. Data may be inaccurate or incomplete.
+            </div>
+        </div> *@
+
+        <header class="main-header">
+            <div class="row">
+                <div class="col">
+                    <a href="/"><img src="/img/pkt-logo-light.svg" class="logo" alt="PKT Explorer" width="70" height="28"></a>
+                </div>
+                <div class="col col-md-auto d-flex">
+                    <div class="controls ms-auto">
+                        <div class="search-control">
+                            <span class="icon material-icons">search</span>
+                            <input type="text" class="form-control form-control-sm desktop" placeholder="Search by Address / Txn Hash / Block">
+                            <input type="text" class="form-control form-control-sm mobile" placeholder="Search">
+                        </div>
+
+                        <a href="#" class="side-menu-control" data-bs-toggle="offcanvas" data-bs-target="#side-menu">
+                            <span class="icon material-icons">view_headline</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="side-menu offcanvas offcanvas-end" tabindex="-1" id="side-menu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h6 class="list-title mt-3">Menu</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link active" href="/">Home</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link" href="/blocks/">Blocks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link" href="/address/pkt1q6hqsqhqdgqfd8t3xwgceulu7k9d9w5t2amath0qxyfjlvl3s3u4sjza2g2">Network Steward</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link" href="/holders/">Holders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link" href="/daily-miners/">Daily Miners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tile tile-link" href="/portfolio/">My Portfolio</a>
+                    </li>
+                </ul>
+
+                <h6 class="list-title mt-5">Theme</h6>
+
+                <div class="btn-group d-flex tile" role="group" id="theme-switcher">
+                    <input type="radio" class="btn-check" name="btn-theme-switcher" id="btn-theme-switcher-light" autocomplete="off" value="light">
+                    <label class="btn btn-sm text-primary" for="btn-theme-switcher-light">Light</label>
+
+                    <input type="radio" class="btn-check" name="btn-theme-switcher" id="btn-theme-switcher-dark" autocomplete="off" value="dark">
+                    <label class="btn btn-sm text-primary" for="btn-theme-switcher-dark">Dark</label>
+
+                    <input type="radio" class="btn-check" name="btn-theme-switcher" id="btn-theme-switcher-system" autocomplete="off" value="system">
+                    <label class="btn btn-sm text-primary" for="btn-theme-switcher-system">Auto</label>
+                </div>
+
+                @if (@Model.showEcosystemTiles) {
+                    <h6 class="list-title mt-5">Ecosystem</h6>
+
+                    <a href="https://pkt.cash" target="_blank" class="tile tile-link">
+                        <h6 class="title">Learn</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-primary">The future of internet access</p>
+                
+                                <p>Learn more about the PKT Cash project at the official project website.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://pkt.world/wallet" target="_blank" class="tile tile-link">
+                        <h6 class="title">Software</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-primary">The Pkt.world wallet</p>
+                
+                                <p>A multi-platform PKT Cash wallet with built-in miner.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://anode.co" target="_blank" class="tile tile-link">
+                        <h6 class="title">Software</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-primary">Anode VPN</p>
+                
+                                <p>Decentralized VPN built on the PKT Cash blockchain.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://routie.io/?ref=pktwatch " target="_blank" class="tile tile-link">
+                        <h6 class="title">Business</h6>
+
+                        <div class="body">
+                            <div class="content">
+                                <p class="text-primary">Wi-fi sharing and mining hardware</p>
+                
+                                <p>Routie build cutting-edge technology utilising the PKT Cash blockchain.</p>
+                            </div>
+                            <div class="control">
+                                <span class="icon material-icons">chevron_right</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="row align-items-center subfooter">
+                    <div class="col">
+                        <a href="https://pkt.watch" class="pkt-watch-logo">
+                            <img src="/img/pkt-watch-logo.svg" alt="Pkt Watch logo" width="150" height="30">
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <div class="donate">
+                            Donations: <a href="/address/@Model.donationAddress" class="hash">@Model.donationAddressCompressed</a> <span class="icon material-icons">favorite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @await RenderSectionAsync("PreScripts", required: false)
+    <script>
+        const API_BASE_URL = "@Model.apiUrl";
+    </script>
+    <script src="/js/scripts.min.js?v=1" defer></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

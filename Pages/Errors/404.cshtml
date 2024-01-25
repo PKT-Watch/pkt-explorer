@@ -1,0 +1,53 @@
+@page
+@{
+    ViewData["Title"] = "404 Page Not Found";
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                
+                <h3>Oooops, we couldn't find that page.</h3>
+                <p class="mt-3">Try searching for an address, transaction hash, block height or block hash.</p>
+
+                <div class="search-control my-4">
+                    <span class="icon material-icons">search</span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Search by Address / Txn Hash / Block">
+                </div>
+
+                <p>or head back to the main site</p>
+                <a href="/" class="tile tile-link">
+                    <div class="body">
+                        <div class="content">
+                            Dashboard
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/blocks/" class="tile tile-link mt-2">
+                    <div class="body">
+                        <div class="content">
+                            Blocks
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/address/pkt1q6hqsqhqdgqfd8t3xwgceulu7k9d9w5t2amath0qxyfjlvl3s3u4sjza2g2" class="tile tile-link mt-2">
+                    <div class="body">
+                        <div class="content">
+                            Network Steward
+                        </div>
+                        <div class="control">
+                            <span class="icon material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿.tab-nav {
+    display: flex;
+    align-items: center;
+    grid-gap: 1rem;
+    flex-wrap: wrap;
+
+    *[data-target] {
+        cursor: pointer;
+        opacity: .5;
+        margin-bottom: 0;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    // Hack to hide the "Expand transaction" switch when not needed
+    // We hide rather than remove to avoid the layout jumping.
+    .list-title-sm.active + .form-check {
+        visibility: hidden;
+        pointer-events: none;
+    }
+}

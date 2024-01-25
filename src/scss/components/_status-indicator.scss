@@ -1,0 +1,24 @@
+.status-indicator {
+    display: flex;
+    align-items: center;
+    grid-gap: .25rem;
+    justify-content: flex-end;
+
+    &.confirmed {
+        .icon {
+            color: var(--color-confirmed); 
+        }
+    }
+
+    &.unconfirmed {
+        .icon {
+            color: var(--color-unconfirmed);
+        }
+    }
+
+    /*&.orphaned {
+        .icon {
+            color: var(--color-orphaned);
+        }
+    }*/
+}
