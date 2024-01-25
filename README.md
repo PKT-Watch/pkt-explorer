@@ -22,6 +22,10 @@ The URL used to access the backend API server. If the API server is installed wi
 #### WebsiteDomain
 The domain that the website will be hosted on. This value is used to generate the correct path to images that are displyed on social media platforms when a page is shared. 
 
+## Who's using this project?
+
+[packetscan.io](https://packetscan.io)
+
 <p align="center">
  <img src="https://github.com/PKT-Watch/pkt-explorer/blob/main/_resources/readme/logo-bar.png?raw=true">
 </p>
