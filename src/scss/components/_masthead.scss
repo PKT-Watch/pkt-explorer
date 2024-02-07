@@ -20,6 +20,7 @@
     h1 {
         margin-bottom: 1rem;
         font-size: 22px;
+        white-space: nowrap; // Fixes CLS issue
 
         @media (min-width: 576px) {
             margin-bottom: 2rem;

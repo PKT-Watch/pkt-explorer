@@ -21,6 +21,7 @@
         display: inline-flex;
         align-items: center;
         height: 34px;
+        width: 30px; // Avoids CLS issue
     }
 
     .logo {

@@ -722,6 +722,7 @@ html[data-theme=dark] .btn-light:hover {
   display: inline-flex;
   align-items: center;
   height: 34px;
+  width: 30px;
 }
 .main-header .logo {
   height: 28px;
@@ -873,6 +874,7 @@ html[data-theme=dark] .btn-light:hover {
 .masthead h1 {
   margin-bottom: 1rem;
   font-size: 22px;
+  white-space: nowrap;
 }
 @media (min-width: 576px) {
   .masthead h1 {
